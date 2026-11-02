@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Shop Zaskia</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fffaf3;
+            color: #493629;
+        }
+
+        header {
+            background: #8b5e3c;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            background: #f0d5b5;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #593b27;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #a65f32;
+        }
+
+        .banner {
+            background: linear-gradient(120deg, #e9c49d, #fff0d9);
+            text-align: center;
+            padding: 75px 20px;
+        }
+
+        .banner h2 {
+            font-size: 36px;
+            color: #754628;
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            margin-bottom: 25px;
+        }
+
+        .banner a {
+            background: #8b5e3c;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+
+        .section {
+            padding: 45px 7%;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: #8b5e3c;
+            margin-bottom: 25px;
+        }
+
+        .search {
+            width: 80%;
+            max-width: 450px;
+            padding: 12px;
+            border: 1px solid #cba783;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin: 12px 0;
+            color: #754628;
+        }
+
+        .harga {
+            color: #a65f32;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        button {
+            background: #8b5e3c;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            background: #654128;
+        }
+
+        .promo {
+            background: #f0d5b5;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .kontak-card {
+            background: white;
+            max-width: 650px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            line-height: 2;
+        }
+
+        .kontak-card a {
+            color: #a65f32;
+            text-decoration: none;
+        }
+
+        #checkout .kontak-card {
+            text-align: left;
+        }
+
+        #checkout h3 {
+            color: #8b5e3c;
+            margin: 20px 0 12px;
+        }
+
+        #checkout input,
+        #checkout textarea,
+        #checkout select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cba783;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        #checkout textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .item-keranjang {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #ead8c5;
+        }
+
+        .item-keranjang button {
+            padding: 6px 12px;
+            margin: 0;
+        }
+
+        #totalHarga {
+            color: #a65f32;
+            margin-top: 18px;
+        }
+
+        footer {
+            background: #8b5e3c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .banner h2 {
+                font-size: 27px;
+            }
+
+            .item-keranjang {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>BAKERY SHOP ZASKIA</h1>
+        <p>Freshly Baked, Made with Love!</p>
+    </header>
+
+    <!-- NAVIGASI -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#produk">Produk</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#checkout">Checkout</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+
+    <!-- BANNER -->
+    <section class="banner" id="home">
+        <h2>Welcome to Bakery Shop Zaskia</h2>
+        <p>Nikmati berbagai pilihan roti lezat dan fresh setiap hari!</p>
+        <a href="#produk">Lihat Produk</a>
+    </section>
+
+    <!-- PRODUK -->
+    <section class="section" id="produk">
+        <h2>Our Bakery Products</h2>
+
+        <input
+            type="text"
+            class="search"
+            id="search"
+            placeholder="Cari roti favoritmu..."
+        >
+
+        <div class="container" id="daftarProduk">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600" alt="Roti Tawar">
+                <h3>Roti Tawar</h3>
+                <p>Roti lembut untuk sarapan setiap hari.</p>
+                <p class="harga">Rp18.000</p>
+                <button onclick="tambahKeranjang('Roti Tawar', 18000)">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=600" alt="Croissant">
+                <h3>Croissant</h3>
+                <p>Pastry renyah dengan tekstur lembut.</p>
+                <p class="harga">Rp15.000</p>
+                <button onclick="tambahKeranjang('Croissant', 15000)">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1608198093002-ad4e0054841e?w=600" alt="Roti Cokelat">
+                <h3>Roti Cokelat</h3>
+                <p>Roti manis dengan isian cokelat.</p>
+                <p class="harga">Rp12.000</p>
+                <button onclick="tambahKeranjang('Roti Cokelat', 12000)">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600" alt="Donat">
+                <h3>Donat</h3>
+                <p>Donat lembut dengan topping menarik.</p>
+                <p class="harga">Rp8.000</p>
+                <button onclick="tambahKeranjang('Donat', 8000)">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=600" alt="Muffin">
+                <h3>Muffin</h3>
+                <p>Kue muffin lembut dan manis.</p>
+                <p class="harga">Rp14.000</p>
+                <button onclick="tambahKeranjang('Muffin', 14000)">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600" alt="Cupcake">
+                <h3>Cupcake</h3>
+                <p>Cupcake cantik dengan krim lembut.</p>
+                <p class="harga">Rp16.000</p>
+                <button onclick="tambahKeranjang('Cupcake', 16000)">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=600" alt="Roti Keju">
+                <h3>Roti Keju</h3>
+                <p>Roti gurih dengan taburan keju.</p>
+                <p class="harga">Rp13.000</p>
+                <button onclick="tambahKeranjang('Roti Keju', 13000)">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=600" alt="Cookies">
+                <h3>Cookies</h3>
+                <p>Biskuit renyah untuk teman santai.</p>
+                <p class="harga">Rp20.000</p>
+                <button onclick="tambahKeranjang('Cookies', 20000)">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600" alt="Chocolate Cake">
+                <h3>Chocolate Cake</h3>
+                <p>Kue cokelat dengan rasa yang nikmat.</p>
+                <p class="harga">Rp35.000</p>
+                <button onclick="tambahKeranjang('Chocolate Cake', 35000)">Tambah ke Keranjang</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CHECKOUT -->
+    <section class="section" id="checkout">
+        <h2>Keranjang & Checkout</h2>
+
+        <div class="kontak-card">
+
+            <h3>Keranjang Belanja</h3>
+
+            <div id="daftarKeranjang">
+                Belum ada produk yang dipilih.
+            </div>
+
+            <h3 id="totalHarga">Total: Rp0</h3>
+
+            <hr>
+
+            <h3>Data Pembeli</h3>
+
+            <input
+                type="text"
+                id="namaPembeli"
+                placeholder="Masukkan nama lengkap"
+            >
+
+            <textarea
+                id="alamatPembeli"
+                placeholder="Masukkan alamat pengiriman"
+            ></textarea>
+
+            <h3>Pilih Metode Pembayaran</h3>
+
+            <select id="metodePembayaran">
+                <option value="">-- Pilih Pembayaran --</option>
+                <option value="DANA">DANA</option>
+                <option value="OVO">OVO</option>
+                <option value="GoPay">GoPay</option>
+                <option value="Transfer Bank">Transfer Bank</option>
+            </select>
+
+            <button onclick="checkout()">
+                Buat Pesanan Sekarang
+            </button>
+
+        </div>
+    </section>
+
+    <!-- PROMO -->
+    <section class="promo">
+        <h2>Special Bakery Offer!</h2>
+        <p>Roti fresh dan lezat untuk menemani hari-harimu.</p>
+    </section>
+
+    <!-- TENTANG -->
+    <section class="section" id="tentang">
+        <h2>About Us</h2>
+
+        <div class="kontak-card">
+            <p>
+                Bakery Shop Zaskia menyediakan berbagai pilihan roti
+                dan kue dengan rasa lezat, tekstur lembut, serta harga
+                yang terjangkau. Temukan camilan favoritmu di sini!
+            </p>
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section class="section" id="kontak">
+        <h2>Contact Us</h2>
+
+        <div class="kontak-card">
+            <p><b>Nama Pemilik:</b> Zaskia Azzahra</p>
+
+            <p>
+                <b>WhatsApp:</b>
+                <a href="https://wa.me/6289501251416" target="_blank">
+                    089501251416
+                </a>
+            </p>
+
+            <p>
+                <b>Instagram:</b>
+                <a href="https://instagram.com/only4.za" target="_blank">
+                    @only4.za
+                </a>
+            </p>
+
+            <p>
+                <b>TikTok:</b>
+                <a href="https://tiktok.com/@me.zaa" target="_blank">
+                    @me.zaa
+                </a>
+            </p>
+
+            <p>
+                <b>Email:</b>
+                <a href="mailto:zaskiaazzahra1018@gmail.com">
+                    zaskiaazzahra1018@gmail.com
+                </a>
+            </p>
+
+            <h3>Metode Pembayaran</h3>
+            <p>DANA | OVO | GoPay | Transfer Bank</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Bakery Shop Zaskia. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        let keranjang = [];
+
+        function tambahKeranjang(nama, harga) {
+
+            keranjang.push({
+                nama: nama,
+                harga: harga
+            });
+
+            tampilkanKeranjang();
+
+            alert(nama + " berhasil ditambahkan ke keranjang!");
+        }
+
+        function tampilkanKeranjang() {
+
+            let daftar = document.getElementById("daftarKeranjang");
+            let total = 0;
+
+            if (keranjang.length === 0) {
+                daftar.innerHTML = "Belum ada produk yang dipilih.";
+            } else {
+
+                daftar.innerHTML = "";
+
+                keranjang.forEach(function(produk, index) {
+
+                    total += produk.harga;
+
+                    daftar.innerHTML += `
+                        <div class="item-keranjang">
+                            <div>
+                                <b>${produk.nama}</b><br>
+                                Rp${produk.harga.toLocaleString("id-ID")}
+                            </div>
+
+                            <button onclick="hapusProduk(${index})">
+                                Hapus
+                            </button>
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById("totalHarga").innerHTML =
+                "Total: Rp" + total.toLocaleString("id-ID");
+        }
+
+        function hapusProduk(index) {
+
+            keranjang.splice(index, 1);
+
+            tampilkanKeranjang();
+        }
+
+        function checkout() {
+
+            let nama = document.getElementById("namaPembeli").value.trim();
+            let alamat = document.getElementById("alamatPembeli").value.trim();
+            let metode = document.getElementById("metodePembayaran").value;
+
+            if (keranjang.length === 0) {
+                alert("Keranjang kamu masih kosong!");
+                return;
+            }
+
+            if (nama === "" || alamat === "" || metode === "") {
+                alert("Silakan lengkapi data pembeli dan pembayaran!");
+                return;
+            }
+
+            let total = 0;
+
+            let rincian = keranjang.map(function(produk, index) {
+
+                total += produk.harga;
+
+                return (index + 1) + ". " +
+                    produk.nama + " - Rp" +
+                    produk.harga.toLocaleString("id-ID");
+
+            }).join("\n");
+
+            let pesan =
+                "HALO BAKERY SHOP ZASKIA!\n\n" +
+                "Saya ingin memesan:\n\n" +
+                rincian + "\n\n" +
+                "Total Harga: Rp" + total.toLocaleString("id-ID") + "\n\n" +
+                "Nama Pembeli: " + nama + "\n" +
+                "Alamat Pengiriman: " + alamat + "\n" +
+                "Metode Pembayaran: " + metode + "\n\n" +
+                "Mohon konfirmasi pesanan saya. Terima kasih!";
+
+            let nomor = "6289501251416";
+
+            let url = "https://wa.me/" + nomor +
+                "?text=" + encodeURIComponent(pesan);
+
+            window.open(url, "_blank");
+        }
+
+        document.getElementById("search").addEventListener("input", function() {
+
+            let kataKunci = this.value.toLowerCase();
+
+            let produk = document.querySelectorAll("#daftarProduk .card");
+
+            produk.forEach(function(card) {
+
+                let namaProduk = card.querySelector("h3").textContent.toLowerCase();
+
+                card.style.display = namaProduk.includes(kataKunci)
+                    ? "block"
+                    : "none";
+
+            });
+        });
+
+    </script>
+
+</body>
+</html>
